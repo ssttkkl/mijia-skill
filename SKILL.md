@@ -90,6 +90,8 @@ uv run mijiaapi get --did <heater_did> --prop_name temperature
 
 **IMPORTANT**: Starting a washer requires calling the `start-wash` action. The CLI tool doesn't support actions, so you must use Python API.
 
+**⚠️ Action IDs are NOT fixed!** The `siid` and `aiid` values can vary. You **must** query the device info before each operation to get the correct action IDs.
+
 **Standard Start Procedure**:
 ```bash
 # 1. Check device status first
@@ -98,11 +100,14 @@ uv run mijiaapi get --did <washer_did> --prop_name status
 # 2. Get all device info (shows properties and actions)
 uv run mijiaapi --get_device_info mibx5.washer.32
 
-# 3. Start washing using Python (CLI doesn't support actions)
+# 3. Find the correct action ID for "start-wash" from the output
+# Look for: actions -> start-wash -> siid and aiid
+
+# 4. Start washing using Python with the CORRECT siid/aiid from step 3
 uv run python -c "
 from mijiaAPI import mijiaAPI
 api = mijiaAPI()
-result = api.run_action({'did': '<washer_did>', 'siid': 2, 'aiid': 2})
+result = api.run_action({'did': '<washer_did>', 'siid': 2, 'aiid': 2})  # Use actual values from device info
 print(result)
 "
 
@@ -110,6 +115,19 @@ print(result)
 # Create washer-env with: uv venv washer-env
 # Install: uv pip install mijiaapi
 # Then run action via Python API
+```
+
+**Finding Action IDs Dynamically**:
+```bash
+# Query device to get current action mappings
+uv run mijiaapi --get_device_info mibx5.washer.32
+
+# In the output, look under "actions" section:
+# {
+#   "start-wash": {"siid": 2, "aiid": 2},  <-- These values change!
+#   "pause": {"siid": 2, "aiid": 3},
+#   "stop-washing": {"siid": 2, "aiid": 1}
+# }
 ```
 
 **Other Operations**:
@@ -128,10 +146,12 @@ uv run mijiaapi set --did <washer_did> --prop_name target-temperature --value 40
 uv run mijiaapi set --did <washer_did> --prop_name on --value true
 ```
 
-**Action IDs** (require Python API):
-- `siid=2, aiid=2`: start-wash (开始洗涤)
-- `siid=2, aiid=3`: pause (暂停)
-- `siid=2, aiid=1`: stop-washing (停止洗涤)
+**Common Action Names to Look For**:
+- `start-wash` - 开始洗涤
+- `pause` - 暂停
+- `stop-washing` - 停止洗涤
+
+> ⚠️ **Always query device info before running actions** — the `siid`/`aiid` values are not guaranteed to remain constant.
 
 #### Lamp (Desk Lamp)
 ```bash
@@ -315,9 +335,10 @@ uv run mijiaapi --list_consumable_items
 - `siid=2, piid=2`: status
 - `siid=2, piid=5`: left time
 - `siid=3, piid=2`: target temperature
-- `siid=2, aiid=1`: stop-washing
-- `siid=2, aiid=2`: start-wash
-- `siid=2, aiid=3`: pause
+- **Actions** (⚠️ aiid varies — query device info first):
+  - `start-wash` (开始洗涤)
+  - `pause` (暂停)
+  - `stop-washing` (停止洗涤)
 
 ### Diffuser (bwj.diffuser.s5)
 - `siid=2, piid=1`: on/off
@@ -326,4 +347,4 @@ uv run mijiaapi --list_consumable_items
 
 ---
 
-*Last updated: 2026-03-08*
+*Last updated: 2026-03-09*
