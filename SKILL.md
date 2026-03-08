@@ -5,7 +5,7 @@ description: Control Xiaomi Mijia smart home devices via mijiaAPI. Use when the 
 
 # Mijia Smart Home Control
 
-Control Xiaomi Mijia smart devices using the official `mijiaAPI` Python library.
+Control Xiaomi Mijia smart devices using the third-party `mijiaAPI` Python library ([GitHub](https://github.com/Do1e/mijia-api)).
 
 **Execution methods:** `uv run` (recommended), `pipx`, `pip`, or direct Python.
 
