@@ -1,28 +1,15 @@
 ---
 name: mijia
-description: Control Xiaomi Mijia smart home devices (heater, lamp, plug, fan, washer, etc.). Uses official mijiaapi via uvx/pipx/pip.
-invocable: true
+description: Control Xiaomi Mijia smart home devices via mijiaAPI. Use when the user wants to control, query, or automate Mijia/Mi Home devices including heaters, washers, lamps, plugs, fans, air purifiers, humidifiers, robot vacuums, and smart bands. Supports listing devices, getting/setting properties, running actions, and managing scenes.
 ---
 
-# Mijia Smart Home Control (Universal Device Support)
+# Mijia Smart Home Control
 
-Control **all** Xiaomi Mijia smart devices using the official `mijiaAPI` Python library. Supports multiple execution methods:
-- **uvx** (recommended) - Fast, automatic dependency management
-- **pipx** - Persistent installation, fast subsequent runs
-- **pip** - Local virtual environment
-- **Direct Python** - For development/custom scripts
+Control Xiaomi Mijia smart devices using the official `mijiaAPI` Python library.
 
-Supports all Mijia devices:
-- **Heaters** - temperature control, on/off
-- **Washers** - start wash, pause, stop, temperature settings
-- **Lamps** - brightness, color temperature, modes
-- **Plugs** - on/off, power monitoring
-- **Fans** - speed control, oscillation
-- **Air Purifiers** - mode, fan speed, filter status
-- **Humidifiers/Diffusers** - on/off, mist level
-- **Robot Vacuums** - start, pause, return home
-- **Smart Bands/Watches** - sync data, check status
-- And **many more** Mijia devices!
+**Execution methods:** `uv run` (recommended), `pipx`, `pip`, or direct Python.
+
+**Supported devices:** heaters, washers, lamps, plugs, fans, air purifiers, humidifiers/diffusers, robot vacuums, smart bands/watches, and more.
 
 ## Setup
 
