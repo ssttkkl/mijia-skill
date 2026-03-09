@@ -2,7 +2,7 @@
 name = "mijia-skill"
 version = "1.0.0"
 description = "OpenClaw skill for controlling Xiaomi Mijia smart home devices"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "mijiaapi>=3.0.5",
 ]
