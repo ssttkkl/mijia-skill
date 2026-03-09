@@ -13,7 +13,6 @@
 ## 安装
 
 ```bash
-cd ~/.openclaw/workspace/skills/mijia
 uv sync
 ```
 

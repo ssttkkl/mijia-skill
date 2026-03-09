@@ -16,7 +16,6 @@ Control Xiaomi Mijia smart devices using the third-party `mijiaAPI` Python libra
 Install dependencies using `uv`:
 
 ```bash
-cd ~/.openclaw/workspace/skills/mijia
 uv sync
 ```
 
