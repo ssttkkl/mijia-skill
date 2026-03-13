@@ -6,7 +6,3 @@ requires-python = ">=3.9"
 dependencies = [
     "mijiaapi>=3.0.5",
 ]
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
